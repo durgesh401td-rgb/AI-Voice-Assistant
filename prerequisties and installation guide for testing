@@ -1,0 +1,22 @@
+🚀 Quick Start & Installation
+Prerequisites
+Windows 10 / 11
+Python 3.10+ (Fully compatible with Python 3.14+)
+Google Gemini API Key (Free from Google AI Studio)
+1. Clone or Download the Repository
+powershell
+
+
+cd D:\voice_ai_assistant
+2. Install Dependencies
+powershell
+
+
+python -m pip install -r requirements.txt
+3. Run the Assistant
+Double-click run_windows_app.bat or run:
+
+powershell
+
+
+python windows_app.py
