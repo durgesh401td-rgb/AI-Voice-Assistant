@@ -1,0 +1,332 @@
+:root {
+    --bg: #0b0f19;
+    --card-bg: rgba(18, 24, 38, 0.7);
+    --border: rgba(64, 196, 255, 0.2);
+    --primary: #00e5ff;
+    --primary-glow: rgba(0, 229, 255, 0.4);
+    --accent: #7c4dff;
+    --text: #e0e6ed;
+    --text-muted: #8892b0;
+    --success: #00e676;
+    --warning: #ffd600;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at 50% 20%, #151e34, var(--bg));
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.hud-container {
+    width: 95vw;
+    max-width: 1100px;
+    height: 92vh;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.6), inset 0 0 20px rgba(0, 229, 255, 0.05);
+}
+
+.hud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 16px;
+}
+
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.status-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--success);
+    box-shadow: 0 0 10px var(--success);
+}
+
+.hud-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #fff;
+}
+
+.hud-title span {
+    color: var(--primary);
+    font-size: 0.9rem;
+}
+
+.controls-group {
+    display: flex;
+    gap: 10px;
+}
+
+.hud-input,
+.hud-select {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 8px;
+    outline: none;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.hud-input:focus,
+.hud-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 8px var(--primary-glow);
+}
+
+.hud-btn-primary,
+.hud-btn-secondary {
+    background: var(--primary);
+    color: #000;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.hud-btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.hud-btn-primary:hover,
+.hud-btn-secondary:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* Glowing Visualizer */
+.visualizer-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.orb-container {
+    width: 160px;
+    height: 160px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.orb-core {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--primary), var(--accent));
+    box-shadow: 0 0 30px var(--primary-glow);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.orb-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed var(--primary);
+    opacity: 0.4;
+    animation: rotate 12s linear infinite;
+}
+
+.ring-1 {
+    width: 130px;
+    height: 130px;
+}
+
+.ring-2 {
+    width: 160px;
+    height: 160px;
+    animation-duration: 8s;
+    animation-direction: reverse;
+}
+
+.ring-3 {
+    width: 190px;
+    height: 190px;
+    animation-duration: 16s;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Pulsing on Listening / Speaking */
+.listening .orb-core {
+    transform: scale(1.3);
+    box-shadow: 0 0 50px #ff0055;
+    background: radial-gradient(circle, #ff0055, #7c4dff);
+}
+
+.speaking .orb-core {
+    transform: scale(1.2);
+    box-shadow: 0 0 50px var(--primary);
+    animation: pulse 1.2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1.35);
+    }
+}
+
+.transcript-display {
+    font-size: 1.15rem;
+    color: var(--text);
+    text-align: center;
+    max-width: 80%;
+    min-height: 28px;
+    line-height: 1.5;
+}
+
+/* Action Controls */
+.action-bar {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin: 16px 0;
+}
+
+.mic-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: rgba(0, 229, 255, 0.15);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.mic-button.active {
+    background: #ff0055;
+    border-color: #ff0055;
+    color: #fff;
+    box-shadow: 0 0 25px rgba(255, 0, 85, 0.6);
+}
+
+.mic-icon {
+    width: 28px;
+    height: 28px;
+}
+
+.text-input-group {
+    flex: 1;
+    display: flex;
+    gap: 8px;
+}
+
+.text-field {
+    flex: 1;
+}
+
+/* Execution Console */
+.console-wrapper {
+    height: 180px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.console-header {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.75rem;
+}
+
+.console-body {
+    padding: 10px 14px;
+    overflow-y: auto;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.log-item.system {
+    color: var(--text-muted);
+}
+
+.log-item.thought {
+    color: #80d8ff;
+}
+
+.log-item.tool_call {
+    color: var(--warning);
+    font-weight: bold;
+}
+
+.log-item.tool_result {
+    color: #b9f6ca;
+    white-space: pre-wrap;
+}
+
+.log-item.response {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.log-item.error {
+    color: #ff5252;
+}
