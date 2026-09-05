@@ -60,3 +60,14 @@ graph TD
     TTS --> Speaker([🔊 Windows Speaker Playback])
     Agent --> UIStream[Live Execution Feed]
     UIStream --> UI
+
+
+voice_ai_assistant/
+│
+├── config.py                # Configuration, voice personas & system prompts
+├── tools.py                 # Autonomous tool suite (Shell, Files, Web, Apps, REPL)
+├── tts_engine.py            # Neural voice synthesizer (edge-tts + Windows MCI)
+├── agent.py                 # Core ReAct reasoning & tool-calling engine
+├── windows_app.py           # Native Windows Desktop GUI Application
+├── requirements.txt         # Project dependencies
+└── run_windows_app.bat      # 1-Click Windows launcher script
